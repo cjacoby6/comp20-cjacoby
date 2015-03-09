@@ -19,5 +19,4 @@ function recieveData() {
 		result += "<p>" + data[i]["content"] + "</p>";
 	}
 	document.getElementById("messages").innerHTML = xml.responseText;
-	}
 }
