@@ -3,7 +3,7 @@ function parse() {
 
 	xml.onreadystatechange = recieveData;
 
-	xml.open("get", "data.json", true);
+	xml.open("get", "http://messagehub.herokuapp.com/messages.json", true);
 
 	xml.send();
 }
