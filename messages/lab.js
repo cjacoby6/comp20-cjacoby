@@ -18,5 +18,5 @@ function recieveData() {
 		console.log("part" + i);
 		result += "<p>" + data[i].content + " " + data[i].username + "</p>";
 	}
-	document.getElementById("messages").innerHTML = xml.responseText;
+	document.getElementById("messages").innerHTML = result;
 }
