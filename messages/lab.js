@@ -11,12 +11,13 @@ function parse() {
 
 function recieveData() {
 	console.log("In my function " + xml.readyState);
-	if (xml.readyState == 4 && xml.status == 200) {
-		data = JSON.parse(xml.responseText);
-		var result = "";
-		for (i = 0; i < data.length; i++) {
-			result += "<p>" + data[i]["content"] + "</p>";
-		}
-		document.getElementById("messages").innerHTML = xml.responseText;
+	data = JSON.parse(xml.responseText);
+	var result = "";
+	console.log("Data length " + data.length);
+	for (i = 0; i < data.length; i++) {
+		console.log("part" + i);
+		result += "<p>" + data[i]["content"] + "</p>";
+	}
+	document.getElementById("messages").innerHTML = xml.responseText;
 	}
 }
