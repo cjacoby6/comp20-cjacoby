@@ -13,7 +13,7 @@ function recieveData() {
 	console.log("In my function " + xml.readyState);
 	data = JSON.parse(xml.responseText);
 	var result = "";
-	console.log("Data length " + data.length);
+	console.log(data);
 	for (i = 0; i < data.length; i++) {
 		console.log("part" + i);
 		result += "<p>" + data[i]["content"] + "</p>";
