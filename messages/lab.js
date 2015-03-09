@@ -6,7 +6,7 @@ function parse() {
 	xml.open("get", "data.json", true);
 
 	xml.send();
-}
+} );
 
 
 function recieveData() {
@@ -20,4 +20,4 @@ function recieveData() {
 	}
 	document.getElementById("messages").innerHTML = xml.responseText;
 	}
-}
+} );
