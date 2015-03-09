@@ -1,23 +1,22 @@
 function parse() {
-	messages = new XMLHttpRequest();
+	xml = new XMLHttpRequest();
 
-	messages.open("get", "data.json", true);
+	xml.onreadystatechange = recieveData;
 
-	messages.onreadystatechange = recieveData;
+	xml.open("get", "data.json", true);
 
-	messages.send();
+	xml.send();
 }
 
 
 function recieveData() {
-	console.log("In my function " + messages.readyState);
-	if (messages.readyState == 4 && messages.status == 200) {
-		alert("Got data back!");
-		data = JSON.parse(messages.responseText);
-		var result = "";
-		for (i = 0; i < data.length; i++) {
-			result += "<p>" + data[i]['username'] + " - " + data[i]["content"] + "</p>";
-		}
-		document.getElementById("messages").innerHTML = messages.responseText;
+	console.log("In my function " + xml.readyState);
+	data = JSON.parse(xml.responseText);
+	var result = "";
+	console.log(data);
+	for (i = 0; i < data.length; i++) {
+		console.log("part" + i);
+		result += "<p>" + data[i].content + " " + data[i].username + "</p>";
 	}
+	document.getElementById("messages").innerHTML = result;
 }
