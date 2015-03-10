@@ -12,7 +12,6 @@ function parse() {
 function recieveData() {
 	data = JSON.parse(xml.responseText);
 	var result = "";
-	console.log(data);
 	for (i = 0; i < data.length; i++) {
 		result += "<p>" + data[i].content + " " + data[i].username + "</p>";
 	}
