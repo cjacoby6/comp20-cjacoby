@@ -101,13 +101,13 @@
 			}
 
 			function recieveLocs() {
-				console.log("Request returns " + request.responseText)
+				console.log("Request returns " + request.responseText);
 				locations = JSON.parse(request.responseText);
 
 				for (i = 0; i < locations.length; i++) {
-					loc.Login = location[i].login;
-					locLat = location[i].lat;
-					locLng = location[i].lng;
+					loc.Login = locations[i].login;
+					locLat = locations[i].lat;
+					locLng = locations[i].lng;
 
 					var loc = new google.maps.LatLng(locLat, locLng);
 
