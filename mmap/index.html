@@ -91,7 +91,7 @@
 			}
 
 			function parse() {
-				request.open("GET", "https://secret-about-box.herokuapp.com/sendLocation", true);
+				request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
 
 				request.onreadystatechange = recieveLocs;
 
