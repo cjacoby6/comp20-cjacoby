@@ -105,7 +105,7 @@
 				locations = JSON.parse(request.responseText);
 
 				for (i = 0; i < locations.length; i++) {
-					loc.Login = locations[i].login;
+					locLogin = locations[i].login;
 					locLat = locations[i].lat;
 					locLng = locations[i].lng;
 
