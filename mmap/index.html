@@ -74,10 +74,12 @@
 			function loadMap() {
 				me = new google.maps.LatLng(myLat, myLng);
 
+				var image = xkcdmarker.png
+
 				map.panTo(me);
 
 				marker = new google.maps.Marker({
-					position: me, title: "Me!"
+					position: me, title: "Me!", icon: image
 				});
 				marker.setMap(map);
 
@@ -85,7 +87,6 @@
 					infowindow.setContent(marker.title);
 					infowindow.open(map, marker);
 				});
-				console.log("hypothetically finished loadMap()");
 
 				parse();
 			}
