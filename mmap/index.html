@@ -104,9 +104,9 @@
 				locations = JSON.parse(request.responseText);
 
 				for (i = 0; i < locations.length; i++) {
-					loc.Login = location[i].login
-					locLat = location[i].lat
-					locLng = location[i].lng
+					loc.Login = location[i].login;
+					locLat = location[i].lat;
+					locLng = location[i].lng;
 
 					var loc = new google.maps.LatLng(locLat, locLng);
 
@@ -120,9 +120,8 @@
 						infowindow.open(map,marker);
 					});
 					console.log("put marker for " + locLogin);
-				})
+				});
 			}
-
 		</script>
 	</head>
 
