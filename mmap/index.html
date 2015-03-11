@@ -38,7 +38,9 @@
 						console.log("2. Finally got your location!");
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
+						console.log("about to load map");
 						loadMap();
+						console.log("finished call to load map");
 					});
 				}
 				else {
@@ -61,6 +63,7 @@
 					infowindow.setContent(marker.title);
 					infowindow.open(map, marker);
 				});
+				console.log("hypothetically finished loadMap()");
 			}
 		</script>
 	</head>
