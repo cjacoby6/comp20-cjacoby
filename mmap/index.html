@@ -8,7 +8,8 @@
 		<link rel="stylesheet" href="mmap.css" />
 		<script>
 			var myLat = 0;
-			var myLong = 0;
+			var myLng = 0;
+			var myLogin = "LisaLytle";
 
 			var request;
 			//specified required in specs - taken from provided code
@@ -32,7 +33,7 @@
 			  alert("Error creating request object --Ajax not supported?");
 			}
 
-			var me = new google.maps.LatLng(myLat, myLong);
+			var me = new google.maps.LatLng(myLat, myLng);
 
 			var mySettings = {
 				zoom: 13, center: me, mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -61,7 +62,7 @@
 						myLng = position.coords.longitude;
 						console.log("about to load map");
 						loadMap();
-						console.log("finished call to load map");
+						console.log("finished call to load map"); 
 					});
 				}
 				else {
@@ -85,7 +86,43 @@
 					infowindow.open(map, marker);
 				});
 				console.log("hypothetically finished loadMap()");
+
+				parse();
 			}
+
+			function parse() {
+				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+				request.open("GET", "https://secret-about-box.herokuapp.com/sendLocation", true);
+
+				request.onreadystatechange = recieveLocs;
+
+				request.send("login=" + myLogin + "&lat=" + myLat + "&lng=" + myLng);
+			}
+
+			function recieveLocs() {
+				locations = JSON.parse(request.responseText);
+
+				for (i = 0; i < locations.length; i++) {
+					loc.Login = location[i].login
+					locLat = location[i].lat
+					locLng = location[i].lng
+
+					var loc = new google.maps.LatLng(locLat, locLng);
+
+					mark = new google.maps.Marker({
+						position: loc, title: locLogin
+					});
+					marker.setMap(map);
+
+					google.maps.event.addListener(marker, 'click', function() {
+						infowindow.setContent(marker.title);
+						infowindow.open(map,marker);
+					});
+					console.log("put marker for " + locLogin);
+				})
+			}
+
 		</script>
 	</head>
 
@@ -94,3 +131,6 @@
 	</body>
 </html>
 
+
+
+				request.onreadystatechange = recieveData;
