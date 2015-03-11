@@ -91,13 +91,13 @@
 			}
 
 			function parse() {
-				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-
 				request.open("GET", "https://secret-about-box.herokuapp.com/sendLocation", true);
 
 				request.onreadystatechange = recieveLocs;
 
 				request.send("login=" + myLogin + "&lat=" + myLat + "&lng=" + myLng);
+
+				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 			}
 
 			function recieveLocs() {
