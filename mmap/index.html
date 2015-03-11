@@ -101,7 +101,6 @@
 			}
 
 			function recieveLocs() {
-				console.log("Request returns " + request.responseText);
 				locations = JSON.parse(request.responseText);
 
 				for (i = 0; i < locations.length; i++) {
@@ -109,18 +108,22 @@
 					locLat = locations[i].lat;
 					locLng = locations[i].lng;
 
-					var loc = new google.maps.LatLng(locLat, locLng);
-
-					mark = new google.maps.Marker({
-						position: loc, title: locLogin
-					});
-					marker.setMap(map);
-
-					google.maps.event.addListener(marker, 'click', function() {
-						infowindow.setContent(marker.title);
-						infowindow.open(map,marker);
-					});
+					placeMark(locLogin, locLat, locLng);
 					console.log("put marker for " + locLogin);
+				};
+			}
+
+			function placeMark(login, lat, lng) {
+				var placeLoc = new google.maps.LatLng(lat, lng);
+				var mrk = new google.maps.Marker({
+					map: map,
+					position: placeLoc
+				});
+
+				google.maps.event.addListener(mrk, 'click', function) {
+					infowindow.close();
+					infowindow.setContent(login);
+					infowindow.open(map, this);
 				};
 			}
 		</script>
