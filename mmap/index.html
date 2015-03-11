@@ -98,6 +98,8 @@
 				request.onreadystatechange = recieveLocs;
 
 				request.send("login=" + myLogin + "&lat=" + myLat + "&lng=" + myLng);
+
+				console.log("Request returns " + request.responseText)
 			}
 
 			function recieveLocs() {
