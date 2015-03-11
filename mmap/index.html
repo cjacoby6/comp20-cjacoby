@@ -10,7 +10,28 @@
 			var myLat = 0;
 			var myLong = 0;
 
-			var request = new XMLHttpRequest();
+			var request;
+			//specified required in specs - taken from provided code
+			try {
+			  request = new XMLHttpRequest();
+			}
+			catch (ms1) { // yes, exception handling is supported in JavaScript
+			  try {
+			    request = new ActiveXObject("Msxml2.XMLHTTP");
+			  }
+			  catch (ms2) {
+			    try {
+			      request = new ActiveXObject("Microsoft.XMLHTTP");
+			    }
+			    catch (ex) {
+			      request = null;
+			    }
+			  }
+			}
+			if (request == null) {
+			  alert("Error creating request object --Ajax not supported?");
+			}
+
 			var me = new google.maps.LatLng(myLat, myLong);
 
 			var mySettings = {
