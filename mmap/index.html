@@ -47,28 +47,21 @@
 			//set-up function
 			function init() {
 				map = new google.maps.Map(document.getElementById("map_canvas"), mySettings);
-				console.log("Before getMyLocation()");
 				getMyLocation();
-				console.log("After getMyLocation()");
 			}
 
 			//function to get my location
 			function getMyLocation() {
-				console.log("1. In getMyLocation()");
 				if (navigator.geolocation) {
 					navigator.geolocation.getCurrentPosition(function(position) {
-						console.log("2. Finally got your location!");
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						console.log("about to load map");
 						loadMap();
-						console.log("finished call to load map"); 
 					});
 				}
 				else {
 					alert("geolocation is not supported by your web browser. What a shame!");
 				}
-				console.log("Leaving getsMyLocation().");
 			}
 
 			function loadMap() {
@@ -110,7 +103,6 @@
 					locLng = locations[i].lng;
 
 					placeMark(locLogin, locLat, locLng);
-					console.log("put marker for " + locLogin);
 				};
 			}
 
@@ -132,6 +124,7 @@
 				});
 			}
 
+			//function taken and modified from provided stack overflow post
 			function haversine(lat1, lon1, lat2, lon2) {
 				var R = 6371; //km
 
@@ -150,10 +143,10 @@
 				return miles;
 			}
 
+			//function taken from provided stack overflow post
 			Number.prototype.toRad = function() {
 				return this * Math.PI / 180;
 			}
-
 		</script>
 	</head>
 
