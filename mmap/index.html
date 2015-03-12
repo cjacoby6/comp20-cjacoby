@@ -95,15 +95,17 @@
 			}
 
 			function recieveLocs() {
-				locations = JSON.parse(request.responseText);
+				if (request.readyState == 4 && request.status == 200) {
+					locations = JSON.parse(request.responseText);
 
-				for (i = 0; i < locations.length; i++) {
-					locLogin = locations[i].login;
-					locLat = locations[i].lat;
-					locLng = locations[i].lng;
+					for (i = 0; i < locations.length; i++) {
+						locLogin = locations[i].login;
+						locLat = locations[i].lat;
+						locLng = locations[i].lng;
 
-					placeMark(locLogin, locLat, locLng);
-				};
+						placeMark(locLogin, locLat, locLng);
+					};
+				}
 			}
 
 			function placeMark(login, lat, lng) {
