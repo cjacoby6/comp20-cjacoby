@@ -8,7 +8,8 @@
 	<script>
 		$("document").ready(function() {
 			$("#msg").change(function() {
-				var input = $("msg").val();
+				var input = "";
+				input = $("msg").val();
 				console.log(input);
 				$("#log").append("<p>" + "changed " + input + "</p>");
 				$("#msg").val("");
