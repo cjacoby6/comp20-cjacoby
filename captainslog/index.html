@@ -21,12 +21,9 @@
 		function reload() {
 			console.log("in reload");
 			for (key in localStorage) {
-				console.log("accessing local storage at - " + 'key');
-				$("#log").prepend("<p>" + key + " - " + localStorage.getItem('key') + "</p>");
+				console.log("accessing local storage at - " + key);
+				$("#log").prepend("<p>" + key + " - " + localStorage[key] + "</p>");
 			}
-
-			console.log("after loop");
-
 			$("msg").change(store);
 		}
 
