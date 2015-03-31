@@ -31,9 +31,9 @@
 			console.log("in store");
 			console.log($("#msg").val());
 			var time = new Date().getTime();
-			localStorage["time"] = $("#msg").val();
+			localStorage[time] = $("#msg").val();
 			$("#msg").val("");
-			reload;
+			reload();
 		}
 		
 	</script>
