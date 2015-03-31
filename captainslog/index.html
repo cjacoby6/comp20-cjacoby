@@ -25,10 +25,13 @@
 				$("#log").prepend("<p>" + key + " - " + localStorage.getItem('key') + "</p>");
 			}
 
+			console.log("after loop");
+
 			$("msg").change(store);
 		}
 
 		function store () {
+			console.log("in store");
 			console.log($("#msg").val());
 			var time = new Date().getTime();
 			localStorage["time"] = $("#msg").val();
