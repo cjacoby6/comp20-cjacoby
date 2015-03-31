@@ -33,8 +33,8 @@
 			console.log($("#msg").val());
 			var time = new Date().getTime();
 			localStorage[time] = $("#msg").val();
+			$("#log").prepend("<p>" + key + " - " + localStorage[time] + "</p>");
 			$("#msg").val("");
-			reload();
 		}
 		
 	</script>
