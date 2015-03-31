@@ -31,8 +31,22 @@
 		function store () {
 			console.log("in store");
 			console.log($("#msg").val());
+
 			var date = new Date()
-			var time = date.getFullYear() + "." + date.getMonth() + "." + date.getDate() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+			var hours = date.getHours();
+			if (hours < 10) {
+				hours = "0"+hours;
+			}
+			var mins = date.getMinutes();
+			if (mins < 10) {
+				mins = "0"+mins;
+			}
+			var secs = date.getSeconds();
+			if (secs < 10) {
+				secs = "0"+secs;
+			}
+			var time = date.getFullYear() + "." + date.getMonth() + "." + date.getDate() + " " + hours + ":" + mins + ":" + secs;
+			
 			localStorage[time] = $("#msg").val();
 			$("#log").prepend("<p>" + time + " - " + localStorage[time] + "</p>");
 			$("#msg").val("");
