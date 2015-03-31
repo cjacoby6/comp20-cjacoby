@@ -31,7 +31,8 @@
 		function store () {
 			console.log("in store");
 			console.log($("#msg").val());
-			var time = new Date().getTime();
+			var date = new Date()
+			var time = date.getFullYear() + "." + date.getMonth() + "." + date.getDate();
 			localStorage[time] = $("#msg").val();
 			$("#log").prepend("<p>" + time + " - " + localStorage[time] + "</p>");
 			$("#msg").val("");
