@@ -20,6 +20,7 @@
 
 		function reload() {
 			console.log("in reload");
+			$("#log").val("");
 			for (key in localStorage) {
 				console.log("accessing local storage at - " + key);
 				$("#log").prepend("<p>" + key + " - " + localStorage[key] + "</p>");
