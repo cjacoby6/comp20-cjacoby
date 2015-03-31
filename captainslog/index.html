@@ -6,9 +6,13 @@
 	<title>Captain's Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
-		$("document").ready(reload)
+		$("document").ready(function() {
+			$("msg").change(function( {
+				console.log($("msg").html())
+			}))
+		})
 
-		function reload() {
+		/*function reload() {
 			for (key in localStorage) {
 				console.log("accessing local storage at - " key)
 				$("#log").prepend("<p>" + key + " - " + localStorage.getItem('key') + </p>);
@@ -21,6 +25,7 @@
 			localStorage[new Date().getTime()] = $("msg").html();
 			reload;
 		}
+		*/
 	</script>
 </head>
 
