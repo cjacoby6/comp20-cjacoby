@@ -28,7 +28,9 @@
 		}
 
 		function store () {
-			localStorage[new Date().getTime()] = $("#msg").val();
+			console.log($("#msg").val());
+			var time = new Date().getTime();
+			localStorage["time"] = $("#msg").val();
 			$("#msg").val("");
 			reload;
 		}
