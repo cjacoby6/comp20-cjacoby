@@ -96,7 +96,9 @@
 
 			function recieveLocs() {
 				if (request.readyState == 4 && request.status == 200) {
-					console.log("request is " + request + " response text " + request.responseText);
+					console.log("request is " + request);
+					l = request.responseText;
+					console.log(" response text " + l);
 					locations = JSON.parse(request.responseText);
 					console.log("locations are " + locations);
 
