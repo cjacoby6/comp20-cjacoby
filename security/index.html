@@ -5,8 +5,26 @@
 
 <body>
 	<div class=title>Introduction
-		<p class=text>
-	<div class=title>Methodology</div>
-	<div class=title>Abstract of Findings</div>
-	<div class=title>Issues Found</div>
+		<p class=text>This is an assessment of a server that stores user logins, locations, and the time of their last check in. The server has three states, "/" which lists all users and information in chronological order, "/sendLocation" which takes a login, latitutde, and longitude and adds it to the database, and a "/location.json" which takes a login query and displays the latitidude and longitude associated with the login in json format. 
+			In particularly, this security assessment was done on the instance of this assignment hosted at https://rocky-springs-2538.herokuapp.com. This particular implementation is the work of the github account hunter~.
+		</p>
+	</div>
+	<div class=title>Methodology
+		<p class=text>My testing of this assignment was done in a black-box format. I exclusively used curl and a web brower to stress the server and investigate how it would respond to faulty input. This was the method that brought led me to the potential security breaches in the code, although after identifying areas of concern I did use the source code to examine exactly how the vulnerabilities existed.
+		</p>
+	</div>
+	<div class=title>Abstract of Findings
+		<p class=text>The security faults I identified mainly stemed on relying on user input following the expected input. This was an issue from the relatively minor problems of the script not rejecting non-number values for latitutde and longitude to failing to produce an error when any or all fields were missing. Because the server relied on field attributes that had not been checked, requesting the location of a username which had undefined or NaN fields crashed the entire application.
+		</p>
+	</div>
+	<div class=title>Issues Found
+		<p class=issuetitle>1. XSS
+			<ul>
+				<li>POST - /sendLocation</li>
+				<li><span class=high>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
+				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue. Unfortunately, as the site has crashed, I do not have a screenshot of the problem.</li>
+				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. This would, for example, convert "<" to "&lt" while still displaying correctly. A possible fix would be to use the npm-installable api html-entities where entities.encode("<>") would return "&lt;&gt;"</li>
+
+			</ul>
+	</div>
 	<div class=title>Conclusion</div>
