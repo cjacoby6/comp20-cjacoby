@@ -36,6 +36,15 @@
 				<img src="NaNinput.png" alt="incorrect NaN input"> <img src="NaNhomescreen.png" alt="result of input">
 			</ul>
 		</p>
+		<p class=issuetitle>3. No Field Checks
+			<ul>
+				<li>POST - /sendLocation</li>
+				<li><span class=severity>Moderate</span> Severity - this opens the website up to taking any sort of input, from missing or additional fields to even input that is not even a string or a query at all. Bash does check for '(' so inserting javaScript of nodejs code seems to be out of the question, but that is an issue a skilled hacker would most likely be able to get around. Regardless, it is a gaping hole that the code takes in any type of input, even though it only inserts NaN and null into the database in response.</li>
+				<li>I found this issue using black box testing and simply expanding on the problems I had previously found.</li>
+				<li>Fortunately, checking input type, the fix for issue 2, should additionally solve this issue although it will not test for taking in extra fields. However as the extra fields would not be stored, that is a minor issue.</li>
+				<img src="missingfields.png" alt="input with missing fields"> <img src="nofields.png" alt="input with no valid fields"> <img src="post-faultyfields_homescreen.png" alt="result of faulty field input"> <img src="non-string_input.png" alt="attempts to input javascript of node js as data">
+			</ul>
+		</p>
 	</div>
 	<div class=title>Conclusion
 		<p>
