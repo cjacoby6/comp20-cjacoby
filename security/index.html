@@ -21,10 +21,22 @@
 		<p class=issuetitle>1. XSS
 			<ul>
 				<li>POST - /sendLocation</li>
-				<li><span class=high>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
-				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue. Unfortunately, as the site has crashed, I do not have a screenshot of the problem.</li>
+				<li><span class=severity>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
+				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue.</li>
 				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. This would, for example, convert "<" to "&lt" while still displaying correctly. A possible fix would be to use the npm-installable api html-entities where entities.encode("<>") would return "&lt;&gt;"</li>
 
 			</ul>
+		</p>
+		<p class=issuetitle>2. Unexpected Input Type
+			<ul>
+				<li>POST - /sendLocation</li>
+				<li><span class=severity>Low</span> Severity - while it is a large security breach to take in input of a different type than expected as then it might not be sanitized correctly, the issue is partially dealth with by using parseNumber() as when latitude and longitude are not numbers they are simple stored as NaN instead of their actual value. </li>
+				<li>I found this issue using black box testing with random inputs. </li>
+				<li>This issue can easily be fixed by checking the value of input for NaN or other unacceptable values before storing the values in the database. If that is the case the code should not store the values and instead return an error message instead. </li>
+				<img src="NaNinput.png" alt="incorrect NaN input"> <img src="NaNhomescreen.png" alt="result of input">
+			</ul>
+		</p>
 	</div>
-	<div class=title>Conclusion</div>
+	<div class=title>Conclusion
+		<p>
+	</div>
