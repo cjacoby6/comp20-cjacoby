@@ -1,0 +1,22 @@
+h1 {
+	font-weight: bold;
+	font-size: 30;
+}
+
+body {
+	font-size: 18;
+}
+
+.title {
+	font-weight: bold;
+	font-size: 26;
+}
+
+.issuetitle {
+	font-weight: bold;
+}
+
+.severity {
+	font-weight: bold;
+	color: red;
+}
