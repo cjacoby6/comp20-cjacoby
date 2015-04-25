@@ -21,10 +21,39 @@
 		<p class=issuetitle>1. XSS
 			<ul>
 				<li>POST - /sendLocation</li>
-				<li><span class=high>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
+				<li><span class=severity>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
 				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue. Unfortunately, as the site has crashed, I do not have a screenshot of the problem.</li>
-				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. This would, for example, convert "<" to "&lt" while still displaying correctly. A possible fix would be to use the npm-installable api html-entities where entities.encode("<>") would return "&lt;&gt;"</li>
-
+				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. A possible fix would be to use the npm-installable api html-entities where entities.encode() would return something similar to "&lt;&gt;" depending on the argument.</li>
 			</ul>
+		</p>
+		<p class=issuetitle>2. NaN or Undefined Values
+			<ul>
+				<li>POST - /sendLocation</li>
+				<li><span class=severity>Low</span> Severity - while it diminishes the value of the product, it is not a huge security threat on its own as other values are stored as NaN or undefined instead of rejecting the input. It is, however, an issue that could potentially fill up the database with faulty data.</li>
+				<li>Continuing in the same line of the first issue I experiemented via curl with various faulty inputs to the program. This was simply another that was not caught. My suspicions were only confirmed when the source code contained no checks for NaN or undefined input.</li>
+				<li>This threat can be eliminated easily by, prior to inserting the values directly, checking them after parsing and, if they are NaN or undefined, not inserting them into the program and instead returning an error.</li>
+				<a href="Homescreen.png">
+			</ul>
+		</p>
+		<p class=issuetitle>3. Missing Fields
+			<ul>
+				<li>POST - /sendLocation</li>
+				<li><span class=severity>Low</span> Severity - this is low severity because the code only inserts the relevant fields into the database. However, if that were not the case this would be a massive security breach, because, as of current, the code accepts anything as input from 3 to a full script to legitimately formed input but with any and all fields the user wishes.</li>
+				<li>Continuing in the same line of the first issue I experiemented via curl with various faulty inputs to the program. This was simply another that was not caught. Once again, the the code did not perform any checks on the user input. This is especially problematic here because entering no relevant input produced the storage of a null field with undefined coordinates. Unfortunately a screenshop could not be provided as the</li>
+				<li>Missing certain fields, or any fields at all, can be solved in the same masser as in 2 since not specified fields, when called, will also return undefined. Therefore all the fields just need to be checked for undefined before inserting a value.</li>
+				<a href="Missing Fields.png">
+			</ul>
+		</p>
+		<p class=issuetitle>4. Server crashes when Requesting Undefined Data
+			<ul>
+				<li>GET - /location.json</li>
+				<li><span class=severity>Moderate</span> Severity - this has moderate severity because, for functionaly, the server should never crash. Furthermore, if a hacker can consistently cause a site to go down, that is a significant security issue for the existance of the website.</li>
+				<li>In the same vein, running random testing unearthed this error. After I requested the value for a login that had undefined portions, the server returned {} and then crashed immediately afterwards, when I tried to run any other command.</li>
+				<li>While the crash is coming from this command, the problem does stem from /sendLocation which took in the unidentified values. I believe attempting to access these is what is crashing the server. If these values cannot exist in the database through more rigorous checks, this problem would be solved.</li>
+				<a href="Working Hat.png"> <a href="Hat Crash.png">
+			</ul>
+		</p>
 	</div>
-	<div class=title>Conclusion</div>
+	<div class=title>Conclusion
+		<p>In sum, the server needs to be much more prepared for user input that is not standard. Almost every non-standard input produced an unfavorable result, both for security and functionality. Luckily, the fixes for the problems outlined above should be relatively straightforward without greatly modifying the structure of the code. I would be happy to address the issues layed out above for the moderate sum of $666.
+		</div>
