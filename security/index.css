@@ -7,6 +7,10 @@ body {
 	font-size: 18;
 }
 
+img {
+	border: 5px gray;
+}
+
 .title {
 	font-weight: bold;
 	font-size: 26;
@@ -20,3 +24,4 @@ body {
 	font-weight: bold;
 	color: red;
 }
+

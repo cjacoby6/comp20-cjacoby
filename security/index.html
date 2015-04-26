@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<h1>Security Assesment of rocky-springs-2538</h1>
+	<link rel="stylesheet" type="text/css" href="index.css">
 </head>
 
 <body>
@@ -23,7 +24,8 @@
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
 				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue.</li>
-				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. This would, for example, convert "<" to "&lt" while still displaying correctly. A possible fix would be to use the npm-installable api html-entities where entities.encode("<>") would return "&lt;&gt;"</li>
+				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. One way to do this is use the javaScript escape() function.</li>
+				<img src="xssalert.png" alt="inputting of xss"> <img src="homescreenalert.png" alt="alert on screen"> <img src="redirectto_redditcats.png" alt="input of xss to redirect">
 
 			</ul>
 		</p>
@@ -45,7 +47,14 @@
 				<img src="missingfields.png" alt="input with missing fields"> <img src="nofields.png" alt="input with no valid fields"> <img src="post-faultyfields_homescreen.png" alt="result of faulty field input"> <img src="non-string_input.png" alt="attempts to input javascript of node js as data">
 			</ul>
 		</p>
+		<p class=issuetitle>4.Query Crashes Server
+			<ul>
+				<li> GET - /location.json</li>
+				<li><span class=severity>High</span> Severity - any query to location.json returns {} and then crashes the server, which is a huge vulnerability. If a malicious entity knew how to crash a site whenever they wished, it would be a huge problem for the site as it would be inaccessible, effectively ruling it useless.</li>
+				<li>I found this issue trying to check all functionality of the site. Given any query crashes the server, it was simply enough to test it using the black-box method.</li>
+				<li>Unfortunately I could not find a clear fix for this problem. I believe it has to do with accessing the database in the matter it does, but more testing would require a more rigorous testing process. Additionally, I believe this has to do with the database allowing illegitimate inputs in the database, such as null or nothing as the login which makes the find() command crash.</li>
+				<img src="query_crash.png" alt="command that crashes server"> <img src="sendLoc_crash.png" alt="full site crash">
 	</div>
 	<div class=title>Conclusion
-		<p>
+		<p>Generally all vulnerablities stemmed from a failure to consider unexpected user input. The entire server only functions when all input is valid. This stems from vulnerabilities in what can be taken in and incorrect input sustaining vulnerabilities in the system. In the future, I would highly recommend santizing and testing user input before using it directly. This changes would not require an overhaul of the server structure as most are fairly minimal. However given the potential implications of the server crashing, I would require a sum of $864 to fix these problems.
 	</div>
