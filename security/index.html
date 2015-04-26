@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <head>
-	<h1>Security Assesment of rocky-springs-2538</h1>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" type="text/css" href="index.css">
+	<meta charset="utf-8"/>
+	<link rel="stylesheet" href="index.css"/>
 </head>
 
 <body>
+	<h1>Security Assesment of rocky-springs-2538</h1>
 	<div class=title>Introduction
 		<p class=text>This is an assessment of a server that stores user logins, locations, and the time of their last check in. The server has three states, "/" which lists all users and information in chronological order, "/sendLocation" which takes a login, latitutde, and longitude and adds it to the database, and a "/location.json" which takes a login query and displays the latitidude and longitude associated with the login in json format. 
 			In particularly, this security assessment was done on the instance of this assignment hosted at https://rocky-springs-2538.herokuapp.com. This particular implementation is the work of the github account hunter~.
@@ -20,7 +20,7 @@
 		</p>
 	</div>
 	<div class=title>Issues Found
-		<p class=issuetitle>1. XSS
+		<p class=issuetitle>1. XSS </p>
 			<ul class=text>
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
