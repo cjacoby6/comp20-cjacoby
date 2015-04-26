@@ -8,7 +8,11 @@ body {
 }
 
 img {
-	border: 5px gray;
+	border: 5px solid gray;
+}
+
+.text {
+	font-weight: normal;
 }
 
 .title {
