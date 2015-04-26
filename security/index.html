@@ -20,7 +20,7 @@
 	</div>
 	<div class=title>Issues Found
 		<p class=issuetitle>1. XSS
-			<ul>
+			<ul class=text>
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
 				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue.</li>
@@ -30,7 +30,7 @@
 			</ul>
 		</p>
 		<p class=issuetitle>2. Unexpected Input Type
-			<ul>
+			<ul class=text>
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>Low</span> Severity - while it is a large security breach to take in input of a different type than expected as then it might not be sanitized correctly, the issue is partially dealth with by using parseNumber() as when latitude and longitude are not numbers they are simple stored as NaN instead of their actual value. </li>
 				<li>I found this issue using black box testing with random inputs. </li>
@@ -39,7 +39,7 @@
 			</ul>
 		</p>
 		<p class=issuetitle>3. No Field Checks
-			<ul>
+			<ul class=text>
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>Moderate</span> Severity - this opens the website up to taking any sort of input, from missing or additional fields to even input that is not even a string or a query at all. Bash does check for '(' so inserting javaScript of nodejs code seems to be out of the question, but that is an issue a skilled hacker would most likely be able to get around. Regardless, it is a gaping hole that the code takes in any type of input, even though it only inserts NaN and null into the database in response.</li>
 				<li>I found this issue using black box testing and simply expanding on the problems I had previously found.</li>
@@ -48,7 +48,7 @@
 			</ul>
 		</p>
 		<p class=issuetitle>4.Query Crashes Server
-			<ul>
+			<ul class=text>
 				<li> GET - /location.json</li>
 				<li><span class=severity>High</span> Severity - any query to location.json returns {} and then crashes the server, which is a huge vulnerability. If a malicious entity knew how to crash a site whenever they wished, it would be a huge problem for the site as it would be inaccessible, effectively ruling it useless.</li>
 				<li>I found this issue trying to check all functionality of the site. Given any query crashes the server, it was simply enough to test it using the black-box method.</li>
@@ -56,5 +56,5 @@
 				<img src="query_crash.png" alt="command that crashes server"> <img src="sendLoc_crash.png" alt="full site crash">
 	</div>
 	<div class=title>Conclusion
-		<p>Generally all vulnerablities stemmed from a failure to consider unexpected user input. The entire server only functions when all input is valid. This stems from vulnerabilities in what can be taken in and incorrect input sustaining vulnerabilities in the system. In the future, I would highly recommend santizing and testing user input before using it directly. This changes would not require an overhaul of the server structure as most are fairly minimal. However given the potential implications of the server crashing, I would require a sum of $864 to fix these problems.
+		<p class=text>Generally all vulnerablities stemmed from a failure to consider unexpected user input. The entire server only functions when all input is valid. This stems from vulnerabilities in what can be taken in and incorrect input sustaining vulnerabilities in the system. In the future, I would highly recommend santizing and testing user input before using it directly. This changes would not require an overhaul of the server structure as most are fairly minimal. However given the potential implications of the server crashing, I would require a sum of $864 to fix these problems.
 	</div>
