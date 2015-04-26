@@ -2,10 +2,11 @@
 <head>
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" href="index.css"/>
+	<title> Security Assessment </title>
 </head>
 
 <body>
-	<h1>Security Assesment of rocky-springs-2538</h1>
+	<h1>Security Assessment of rocky-springs-2538</h1>
 	<div class=title>Introduction
 		<p class=text>This is an assessment of a server that stores user logins, locations, and the time of their last check in. The server has three states, "/" which lists all users and information in chronological order, "/sendLocation" which takes a login, latitutde, and longitude and adds it to the database, and a "/location.json" which takes a login query and displays the latitidude and longitude associated with the login in json format. 
 			In particularly, this security assessment was done on the instance of this assignment hosted at https://rocky-springs-2538.herokuapp.com. This particular implementation is the work of the github account hunter~.
@@ -21,15 +22,14 @@
 	</div>
 	<div class=title>Issues Found
 		<p class=issuetitle>1. XSS </p>
-			<ul class=text>
-				<li>POST - /sendLocation</li>
+		<ul class=text>
+			<li>POST - /sendLocation</li>
 				<li><span class=severity>High</span> Severity - with a scripted attack the hacker can direct the webpage to do anything it wants, from redirecting to a malicious site or presenting false information.</li>
-				<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue.</li>
-				<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. One way to do this is use the javaScript escape() function.</li>
-			</ul>
-			<img src="xssalert.png" alt="inputting of xss"> <img src="homescreenalert.png" alt="alert on screen"> <img src="redirectto_redditcats.png" alt="input of xss to redirect">
-		</p>
-		<p class=issuetitle>2. Unexpected Input Type
+			<li>Simply experimenting with possible inputs for logins and previous examples of XSS helped me find this issue.</li>
+			<li>This threat can be mitigated by converting potentially worrisome characters to their HTML equivalents. One way todo this is use the javaScript escape() function.</li>
+		</ul>
+		<img src="xssalert.png" alt="inputting of xss"> <img src="homescreenalert.png" alt="alert on screen"> <img src="redirectto_redditcats.png" alt="input of xss to redirect">
+		<p class=issuetitle>2. Unexpected Input Type </p>
 			<ul class=text>
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>Low</span> Severity - while it is a large security breach to take in input of a different type than expected as then it might not be sanitized correctly, the issue is partially dealth with by using parseNumber() as when latitude and longitude are not numbers they are simple stored as NaN instead of their actual value. </li>
@@ -37,8 +37,8 @@
 				<li>This issue can easily be fixed by checking the value of input for NaN or other unacceptable values before storing the values in the database. If that is the case the code should not store the values and instead return an error message instead. </li>
 			</ul>
 			<img src="NaNinput.png" alt="incorrect NaN input"> <img src="NaNhomescreen.png" alt="result of input">
-		</p>
-		<p class=issuetitle>3. No Field Checks
+
+		<p class=issuetitle>3. No Field Checks </p>
 			<ul class=text>
 				<li>POST - /sendLocation</li>
 				<li><span class=severity>Moderate</span> Severity - this opens the website up to taking any sort of input, from missing or additional fields to even input that is not even a string or a query at all. Bash does check for '(' so inserting javaScript of nodejs code seems to be out of the question, but that is an issue a skilled hacker would most likely be able to get around. Regardless, it is a gaping hole that the code takes in any type of input, even though it only inserts NaN and null into the database in response.</li>
@@ -46,8 +46,8 @@
 				<li>Fortunately, checking input type, the fix for issue 2, should additionally solve this issue although it will not test for taking in extra fields. However as the extra fields would not be stored, that is a minor issue.</li>
 			</ul>
 			<img src="missingfields.png" alt="input with missing fields"> <img src="nofields.png" alt="input with no valid fields"> <img src="post-faultyfields_homescreen.png" alt="result of faulty field input"> <img src="non-string_input.png" alt="attempts to input javascript of node js as data">
-		</p>
-		<p class=issuetitle>4.Query Crashes Server
+
+		<p class=issuetitle>4.Query Crashes Server </p>
 			<ul class=text>
 				<li> GET - /location.json</li>
 				<li><span class=severity>High</span> Severity - any query to location.json returns {} and then crashes the server, which is a huge vulnerability. If a malicious entity knew how to crash a site whenever they wished, it would be a huge problem for the site as it would be inaccessible, effectively ruling it useless.</li>
